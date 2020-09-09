@@ -1,4 +1,4 @@
-import hashlib, random, string, uuid, requests, json
+import hashlib, random, string, uuid, requests, json, time, calendar
 
 def RandomString(n = 10):
     letters = string.ascii_lowercase + '1234567890'
@@ -94,6 +94,7 @@ def fetch_headers() -> dict:
     return requests.get(url, headers=headers).cookies # use it as cookies or dict [ cookies.get_dict() ]
 
 init_cookies = fetch_headers()
+TimeStamp = calendar.timegm(time.gmtime())
 
 headers = {}
 headers['User-Agent'] = UserAgent()
@@ -102,7 +103,7 @@ headers['x-ig-app-locale'] = 'en_SA'
 headers['x-ig-device-locale'] = 'en_SA' 
 headers['x-ig-mapped-locale'] = 'en_US'
 headers['x-pigeon-session-id'] = guid()
-headers['x-pigeon-rawclienttime'] = '1599515404.254'
+headers['x-pigeon-rawclienttime'] = f'{TimeStamp}'
 headers['x-ig-connection-speed'] = '643kbps'
 headers['x-ig-bandwidth-speed-kbps'] = '1236.889'
 headers['x-ig-bandwidth-totalbytes-b'] = '6672937'
